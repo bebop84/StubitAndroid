@@ -12,7 +12,8 @@
         android:id="@+id/scrollView"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" >
-    <LinearLayout
+
+        <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -20,30 +21,40 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="100dp"
         android:layout_alignEnd="@+id/TextView1"
         android:layout_alignParentTop="true"
-        android:background="#9055BEDB"
+        android:background="#0055bedb"
         android:id="@+id/linearLayout6">
+        <View
+            android:layout_marginTop="20dp"
+            android:layout_height="2dip"
+            android:background="#FF909090"
+            android:layout_width="wrap_content" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="STUBIT"
+            android:text="STUBIT 회원가입"
             android:id="@+id/textView16"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="20dp"
-            android:textSize="50dp"
-            android:textStyle="bold|italic" />
+            android:textSize="28dp"
+
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="회원가입 페이지 입니다."
+            android:text="STUBIT JOIN PAGE"
+            android:textStyle="bold|italic"
             android:id="@+id/textView17"
-            android:layout_marginTop="15dp" />
+            android:layout_marginTop="1dp" />
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090"
+            android:layout_width="wrap_content" />
+
     </LinearLayout>
 
     <TextView
@@ -68,6 +79,7 @@
         android:text="PASSWORD"
         android:textSize="20dp"
         android:layout_below="@+id/Edit_id"
+        android:layout_marginTop="10dp"
         android:layout_alignParentStart="true" />
     <EditText
         android:id="@+id/Edit_password"
@@ -84,6 +96,7 @@
         android:layout_height="wrap_content"
         android:text="NAME"
         android:textSize="20dp"
+        android:layout_marginTop="10dp"
         android:layout_below="@+id/Edit_password"
         android:layout_alignParentStart="true" />
     <EditText
@@ -100,6 +113,7 @@
         android:layout_height="wrap_content"
         android:text="타입"
         android:textSize="20dp"
+        android:layout_marginTop="10dp"
         android:layout_below="@+id/Edit_name"
         android:layout_alignParentStart="true" />
 
@@ -133,20 +147,24 @@
             android:id="@+id/employee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="학생"
+            android:text="직원"
             android:layout_above="@+id/TextView5"
-           />
+            />
     </RadioGroup>
-
-    <TextView
+            <View
+                android:layout_height="2dip"
+                android:background="#FF909090"
+                android:layout_width="wrap_content" />
+            <TextView
         android:id="@+id/TextView5"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="디바이스 정보 사용 동의"
         android:textSize="20dp"
+        android:layout_marginTop="10dp"
         android:layout_below="@+id/radio_position"
         android:layout_alignParentStart="true"
-        android:background="#90D75717" />
+        android:background="#90bd1212" />
 
 
     <RadioButton
@@ -157,12 +175,17 @@
         android:checked="false"
         android:layout_below="@+id/TextView5"
         android:layout_alignParentStart="true" />
+            <View
+                android:layout_height="2dip"
+                android:background="#a4a4a4"
+                android:layout_width="wrap_content" />
 
-    <Button
+            <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="회원가입"
         android:id="@+id/joinbutton"
+                android:layout_marginTop="10dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal" />

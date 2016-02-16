@@ -20,7 +20,7 @@
             android:id="@+id/class_name"
 
             android:layout_marginTop="15dp"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="85dp"
             android:layout_marginRight="40dp"/>
 
         <TextView

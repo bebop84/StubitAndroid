@@ -2,8 +2,13 @@ package com.example.bit_user.myapplication;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,6 +16,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.bit_user.myapllication.core.JSONResult;
 import com.example.bit_user.myapllication.core.SafeAsyncTask;
@@ -29,8 +35,11 @@ import java.util.List;
 import static com.github.kevinsawicki.http.HttpRequest.post;
 
 
-public class CheckListDataActivity extends Activity {
+public class CheckListDataActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+
     String checkNo;
+    String id;
+    String position;
     String lessonName;
     Bundle bundleData;
     TextView lesson_name;
@@ -45,10 +54,22 @@ public class CheckListDataActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_list_data);
 
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer,R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+
         Intent intent = getIntent();
         Bundle bundleData = intent.getBundleExtra("checkNo_date");
         Log.d("checkNo여기는checkListData", bundleData.getString("checkNo"));
         checkNo =  bundleData.getString("checkNo");
+        id = bundleData.getString("ID");
+        position = bundleData.getString("POSITION");
 
         lesson_name = (TextView) findViewById(R.id.lesson_name);
         check_data_list = (ListView) findViewById(R.id.check_data_list);
@@ -79,7 +100,7 @@ public class CheckListDataActivity extends Activity {
             ArrayList<HashMap> arrayList1 = new ArrayList<HashMap>();
             try {
 
-                HttpRequest request = post("http://192.168.1.13:8088/bitin/api/attd/by-attdno");
+                HttpRequest request = post("http://192.168.0.5:8088/bitin/api/attd/by-attdno");
 
                 // reiquest 설정
                 request.connectTimeout(2000).readTimeout(2000);
@@ -151,6 +172,77 @@ public class CheckListDataActivity extends Activity {
         private class JSONResultString extends JSONResult<ArrayList<HashMap>> {
 
         }
+    }
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int getid = item.getItemId();
+
+        if (getid == R.id.nav_home) {
+            Intent intent1 = new Intent(this, MenuActivity.class);
+            bundleData = new Bundle();
+            bundleData.putString("ID",id);
+            bundleData.putString("POSITION",position);
+
+            intent1.putExtra("ID_DATA", bundleData);
+            startActivity(intent1);
+
+            Toast.makeText(this, "home", Toast.LENGTH_SHORT).show();
+        } else if (getid == R.id.nav_checkup) {
+            Intent intent2 = new Intent(this, checkUpActivity.class);
+            bundleData = new Bundle();
+            bundleData.putString("ID",id);
+            bundleData.putString("POSITION",position);
+            intent2.putExtra("ID_DATA", bundleData);
+            startActivity(intent2);
+            Toast.makeText(this, "check", Toast.LENGTH_SHORT).show();
+
+        } else if (getid == R.id.nav_checkNow) {
+            Intent intent3 = new Intent(this, checkNowActivity.class);
+            bundleData = new Bundle();
+            bundleData.putString("ID",id);
+            bundleData.putString("POSITION",position);
+            intent3.putExtra("ID_DATA", bundleData);
+            startActivity(intent3);
+            Toast.makeText(this, "nav_checkList", Toast.LENGTH_SHORT).show();
+        } else if (getid == R.id.nav_ThChecklist) {
+            Intent intent3 = new Intent(this, checkListActivity.class);
+            bundleData = new Bundle();
+            bundleData.putString("ID",id);
+            bundleData.putString("POSITION",position);
+            intent3.putExtra("ID_DATA", bundleData);
+            startActivity(intent3);
+            Toast.makeText(this, "nav_checkList", Toast.LENGTH_SHORT).show();
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 
 }

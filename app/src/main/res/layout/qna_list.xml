@@ -2,33 +2,47 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="160dp"
+        android:layout_height="match_parent"
+        >
 
     <TextView android:id="@+id/qnalist_lessonname"
         android:text="수업이름"
-        android:layout_width="wrap_content"
+        android:layout_width="64dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"/>
+        android:layout_marginTop="5dp" />
 
     <TextView android:id="@+id/qnalist_studentname"
-        android:text="질문자이름"
+        android:text="질문자"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"/>
+        android:layout_marginTop="5dp" />
 
     <TextView android:id="@+id/qnalist_pptnumber"
         android:text="ppt넘버"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"/>
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp" />
+
+    </LinearLayout>
 
     <Button android:id="@+id/qnalist_check_qna"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:text="쪽지확인"  />
+        android:layout_width="wrap_content"
+        android:layout_height="33dp"
+        android:textSize = "10dp"
+        android:text="쪽지확인"
+        android:layout_marginLeft="20dp" />
 
     <Button android:id="@+id/qnalist_remove_btn"
         android:layout_width="80dp"
-        android:layout_height="wrap_content"
+        android:layout_height="33dp"
+        android:textSize = "10dp"
         android:text="삭제"  />
+
 </LinearLayout>

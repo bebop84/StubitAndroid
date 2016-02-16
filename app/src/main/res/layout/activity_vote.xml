@@ -4,37 +4,69 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@drawable/bg1"
     tools:context="com.example.bit_user.myapplication.VoteActivity">
 
     <ImageView
         android:layout_width="800dp"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:id="@+id/imageView"
-        android:background="@drawable/top"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="38dp" />
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/scrollView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignEnd="@+id/TextView1"
+        android:layout_alignParentTop="true"
+        android:background="#0055bedb"
+        android:id="@+id/linearLayout6">
+        <View
+            android:layout_marginTop="20dp"
+            android:layout_height="2dip"
+            android:background="#FF909090"
+            android:layout_width="wrap_content" />
 
         <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:text="투표 제목"
-            android:textStyle="bold"
-            android:layout_below="@+id/imageView"
-            android:id="@+id/vote_title"/>
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="STUBIT 투표"
+            android:id="@+id/textView16"
+            android:textSize="28dp"
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:hint="투표제목"
-        android:id="@+id/check_vote"
-        android:layout_below="@+id/vote_title"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="STUBIT VOTE PAGE"
+            android:textStyle="bold|italic"
+            android:id="@+id/textView17"
+            android:layout_marginTop="1dp" />
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090"
+            android:layout_width="wrap_content" />
+
+    </LinearLayout>
 
         <ListView
             android:layout_width="wrap_content"
-            android:layout_height="500dp"
+            android:layout_height="318dp"
             android:id="@+id/vote_list"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/check_vote"
@@ -47,6 +79,9 @@
         android:text="투표하기"
         android:id="@+id/vote_btn"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal" />
 
+</LinearLayout>
+    </ScrollView>
 </RelativeLayout>

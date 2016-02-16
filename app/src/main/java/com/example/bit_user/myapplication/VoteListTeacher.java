@@ -125,7 +125,7 @@ public class VoteListTeacher extends Activity {
             vote_time_teacher.setText(dataItem.get("createdDate").toString());
 
             click_vote_teacher.setTag(position);
-            click_vote_teacher.setOnClickListener(new View.OnClickListener() {
+            click_vote_teacher.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     LinearLayout itemParent = (LinearLayout)v.getParent();
@@ -142,7 +142,7 @@ public class VoteListTeacher extends Activity {
             });
 
             remove_vote_teacher.setTag(position);
-            remove_vote_teacher.setOnClickListener(new View.OnClickListener() {
+            remove_vote_teacher.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     LinearLayout itemParent = (LinearLayout)v.getParent();
@@ -182,7 +182,7 @@ public class VoteListTeacher extends Activity {
     private class LessonListTask extends AsyncTask<String, Void, String> {
         protected String doInBackground(String... params) {
             try {
-                HttpRequest request = post("http://192.168.1.32:8088/bitin/api/vote/list");
+                HttpRequest request = post("http://192.168.0.5:8088/bitin/api/vote/list");
                 request.connectTimeout(2000).readTimeout(2000);
 
                 request.acceptCharset("UTF-8");
@@ -249,7 +249,7 @@ public class VoteListTeacher extends Activity {
     private class RemoveTask extends AsyncTask<String, Void, String> {
         protected String doInBackground(String... params) {
             try {
-                HttpRequest request = post("http://192.168.1.32:8088/bitin/api/vote/delete");
+                HttpRequest request = post("http://192.168.0.5:8088/bitin/api/vote/delete");
                 request.connectTimeout(2000).readTimeout(2000);
 
                 request.acceptCharset("UTF-8");

@@ -1,8 +1,12 @@
 package com.example.bit_user.myapplication;
 
-/**
- * Created by bituser on 2015-12-14.
- */
-public class MypageActivity {
+
+import android.app.Activity;
+
+public class MypageActivity extends Activity {
+    public static final String TAG = "MypageActivity";
 
 }
+
+
+

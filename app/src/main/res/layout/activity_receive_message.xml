@@ -7,26 +7,27 @@
     android:background="@drawable/bg1"
 
     tools:context="com.example.bit_user.myapplication.QnAActivity">
-    <ImageView
-        android:layout_width="800dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:background="@drawable/top"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="38dp" />
 
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/Fl1"
-        android:layout_below="@+id/imageView">
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="40dp">
+        <View
+            android:layout_marginTop="3dp"
+            android:layout_height="2dip"
+            android:background="#FF909090"
+            android:layout_width="wrap_content" />
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="200dp"
         android:id="@+id/qna_teacher"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_above="@+id/linear1" />
+        android:layout_above="@+id/linear1"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="10dp" />
     </FrameLayout>
 
     <LinearLayout
@@ -34,7 +35,20 @@
         android:layout_width="match_parent"
         android:id="@+id/linear2"
         android:layout_below="@+id/Fl1"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="수업이름"
+            android:textSize="16dp"
+            android:layout_alignParentStart="true"
+            android:layout_weight="0.38"
+            android:textStyle="bold"
+            android:layout_marginBottom="5dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -44,25 +58,59 @@
             android:textSize="16dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_weight="1" />
+            android:layout_weight="0.76"
+            android:layout_marginLeft="10dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/QnA_name"
-            android:text = "질문자 이름"
-            android:textSize="16dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_weight="1" />
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:id="@+id/linear3"
+        android:id="@+id/linear8"
         android:layout_below="@+id/linear2"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="질문자 "
+            android:textSize="16dp"
+            android:layout_alignParentStart="true"
+            android:textStyle="bold"
+            android:layout_marginRight="32dp"
+            android:layout_marginBottom="5dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/QnA_name"
+            android:text ="질문자 "
+            android:textSize="16dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_weight="0.88"
+            android:layout_marginLeft="15dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:id="@+id/linear7"
+        android:layout_below="@+id/linear8"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="PPT 번호"
+            android:textSize="16dp"
+            android:layout_alignParentStart="true"
+            android:layout_weight="0.12"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -72,18 +120,39 @@
             android:textSize="16dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_weight="1" />
+            android:layout_weight="0.84"
+            android:layout_marginLeft="15dp" />
+    </LinearLayout>
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:id="@+id/linear3"
+        android:layout_below="@+id/linear7"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="질문시간"
+            android:textSize="16dp"
+            android:layout_alignParentStart="true"
+            android:layout_weight="0.05"
+            android:textStyle="bold"
+            android:layout_marginBottom="5dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/qnaTime"
-            android:text = "qna Time"
+            android:text = "Q and A Time"
             android:textSize="16dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_weight="1" />
+            android:layout_weight="0.91"
+            android:layout_marginLeft="28dp" />
 
     </LinearLayout>
     <LinearLayout
@@ -91,8 +160,7 @@
         android:layout_width="match_parent"
         android:layout_below="@+id/linear3"
         android:id="@+id/linear1"
-        android:layout_height="wrap_content"
-        android:weightSum="1">
+        android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="wrap_content"
@@ -102,15 +170,67 @@
             android:textSize="16dp"
             android:id="@+id/textView2"
             android:layout_below="@+id/qna_teacher"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_weight="0.27"
+            android:textStyle="bold" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="132dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/ask_Message"
             android:text = "@string/one_more_time"
             android:layout_below="@+id/textView2"
             android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:layout_weight="1.79"
+            android:layout_marginLeft="22dp" />
     </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/linear2"
+        android:layout_marginTop="60dp"
+        android:background="#FF909090"></LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="81dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/Fl1"
+        android:background="#FF909090"
+        android:layout_marginLeft="10dp"
+        android:layout_alignBottom="@+id/linearLayout8"
+        android:id="@+id/linearLayout11"></LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#FF909090"
+        android:layout_below="@+id/linear1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:id="@+id/linearLayout8" />
+    <View
+        android:layout_marginTop="3dp"
+        android:layout_height="2dip"
+        android:background="#FF909090"
+        android:layout_width="wrap_content" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="질문 내용"
+        android:id="@+id/textView11"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold" />
+
+
 </RelativeLayout>

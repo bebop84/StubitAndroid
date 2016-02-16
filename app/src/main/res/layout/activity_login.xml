@@ -13,11 +13,14 @@
         android:id="@+id/scrollView"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" >
+
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:weightSum="1">
+            android:weightSum="1"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -47,14 +50,18 @@
                 android:textSize="20dp"
                 android:textColor="#fff"
                 android:layout_marginTop="30dp"
-                />
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="5dp" />
 
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#90828077">
+                android:layout_height="fill_parent"
+                android:background="#90828077"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
 
                 <ImageView
                     android:layout_width="30dp"
@@ -71,7 +78,7 @@
                     android:hint="   아이디를 입력해주세요."
                     android:layout_centerVertical="true"
                     android:background="#904C4E4A"
-                    android:textColorHint="#fff" />
+                    android:textColorHint="#a8a8a8" />
             </LinearLayout>
 
             <TextView
@@ -81,14 +88,18 @@
                 android:text=" PASSWORD"
                 android:textColor="#fff"
                 android:textSize="20dp"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="5dp" />
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.57"
-                android:background="#90828077">
+                android:background="#90828077"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
 
                 <ImageView
                     android:layout_width="35dp"
@@ -104,8 +115,9 @@
                     android:textColor="#fff"
                     android:hint="   비밀번호를 입력하세요."
                     android:layout_alignParentStart="true"
+                    android:password="true"
                     android:background="#904C4E4A"
-                    android:textColorHint="#fff" />
+                    android:textColorHint="#a8a8a8" />
 
             </LinearLayout>
 
@@ -116,7 +128,8 @@
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:weightSum="1"
-                android:layout_marginTop="50dp">
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="20dp">
 
                 <Button
                     android:layout_width="wrap_content"
@@ -125,7 +138,7 @@
                     android:id="@+id/loginbutton"
                     android:layout_alignParentBottom="true"
                     android:textColor="#fff"
-                    android:layout_marginLeft="100dp" />
+                    android:layout_marginLeft="92dp" />
 
                 <Button
                     android:layout_width="wrap_content"
@@ -137,27 +150,30 @@
 
             </LinearLayout>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="아이디 또는 비밀번호 찾기"
+                android:id="@+id/textView15"
+                android:textSize="15dp"
+                android:textIsSelectable="false"
+                android:layout_gravity="center_horizontal"
+                android:background="#6c8a8a8a" />
+
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:background="#90D75717">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="아이디 또는 비밀번호 찾기"
-                    android:id="@+id/textView15"
-                    android:layout_marginLeft="110dp"
-                    android:textSize="15dp"
-                    android:textIsSelectable="false" />
             </LinearLayout>
 
 
         </LinearLayout>
     </ScrollView>
+
 
 </RelativeLayout>
 

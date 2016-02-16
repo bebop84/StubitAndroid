@@ -1,6 +1,6 @@
 package com.example.bit_user.myapplication;
 
-import android.app.Activity;
+
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
@@ -9,16 +9,18 @@ import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+
+
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
+
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
+
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -27,7 +29,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.bit_user.NavigationDrawerFragment;
 import com.example.bit_user.myapllication.core.JSONResult;
 import com.github.kevinsawicki.http.HttpRequest;
 import com.google.gson.Gson;
@@ -38,7 +39,7 @@ import org.json.JSONObject;
 import java.io.Reader;
 
 import java.net.HttpURLConnection;
-import java.text.ParseException;
+
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -46,17 +47,14 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
 
 
 import static com.github.kevinsawicki.http.HttpRequest.post;
 
 
-public class checkActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+public class checkActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener{
 
-    private NavigationDrawerFragment mNavigationDrawerFragment;
-    private CharSequence mTitle;
 
     public static final String KEY_SIMPLE_DATA = "data";
     private static final Gson GSON = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
@@ -75,6 +73,7 @@ public class checkActivity extends ActionBarActivity implements NavigationDrawer
     Double longitude;
     Double latitude;
     String id;
+    String status;
     String strDay;
     String strTime;
     Long count_timer;
@@ -84,6 +83,7 @@ public class checkActivity extends ActionBarActivity implements NavigationDrawer
     String classNo;
     TextView stu_count;
     Bundle bundleData;
+    Button nav_home;
 
     private CountDownTimer countDownTimer; // built in android class
     // CountDownTimer
@@ -98,26 +98,30 @@ public class checkActivity extends ActionBarActivity implements NavigationDrawer
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check);
 
-        mNavigationDrawerFragment = (NavigationDrawerFragment)
-                getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
-        mTitle = getTitle();
 
-        // Set up the drawer.
-        mNavigationDrawerFragment.setUp(
-                R.id.navigation_drawer,
-                (DrawerLayout) findViewById(R.id.drawer_layout));
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer,R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
 
         Intent intent = getIntent();
         Bundle bundleData = intent.getBundleExtra("ID_DATA");
         id = bundleData.getString("ID");
-        position = bundleData.getString("position");
+        position = bundleData.getString("POSITION");
+
+
 
         if (bundleData == null) {
             Toast.makeText(this, "Bundle data is null!", Toast.LENGTH_LONG).show();
             return;
         }
 
-        Toast.makeText(this, "ID is " + id, Toast.LENGTH_LONG).show();
+        navigationView.setNavigationItemSelectedListener(this);
 
         check_day = (TextView) findViewById(R.id.check_day);
         check_time = (TextView) findViewById(R.id.check_time);
@@ -174,7 +178,7 @@ public class checkActivity extends ActionBarActivity implements NavigationDrawer
                     } else {
                         stu_count.setText("출석체크 끝!");
                     }
-                    Toast.makeText(getBaseContext(), lesson, Toast.LENGTH_SHORT).show();
+                 //   Toast.makeText(getBaseContext(), lesson, Toast.LENGTH_SHORT).show();
                     check_lesson.setText("" + lesson);
                 } else {
                     Log.d("null 이다 ", "null 이다");
@@ -185,13 +189,13 @@ public class checkActivity extends ActionBarActivity implements NavigationDrawer
         check_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("ss", "ss");
+
                 Test();
                 //str.toString();
                 startLocationService();
                 codeNum = check_CodeNum.getText().toString();
                 if(longitude==null && latitude==null){
-                    Toast.makeText(getApplicationContext(), "GPS를 동의해주세요.", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getApplicationContext(), "GPS를 동의해주세요.", Toast.LENGTH_SHORT).show();
                 }
 
                 CheckTask asyncT = new CheckTask();
@@ -200,7 +204,22 @@ public class checkActivity extends ActionBarActivity implements NavigationDrawer
             }
         });
     }
+    public void checkSuccess(String status) {
+        if(status !=null && status.equals("success")) {
 
+            Intent intent = new Intent(getBaseContext(), MenuActivity.class);
+            Bundle bundleData = new Bundle();
+            bundleData.putString("ID", id);
+            bundleData.putString("POSITION",position);
+            intent.putExtra("ID_DATA", bundleData);
+            startActivity(intent);
+            finish();
+
+        }else if(status != null && status.equals("fail")){
+            Toast.makeText(getApplicationContext(), "승인완료",Toast.LENGTH_LONG).show();
+            return;
+        }
+    }
 
 
     public void setListViewData() {
@@ -221,7 +240,7 @@ public class checkActivity extends ActionBarActivity implements NavigationDrawer
 
                         for (int i = 0; i < arrList.size(); i++) {
                             Log.d("addList", "addList--------------------->" + arrList.get(i) + "arrList.size()" + arrList.size());
-                            adapter.add("                 "+arrList.get(i).get("CLASSNAME").toString() +"                 "+
+                            adapter.add("                  "+arrList.get(i).get("CLASSNAME").toString() +"                 "+
                                     arrList.get(i).get("CLASSTIME").toString());
                             arrayListClassNo.put("CLASSNO",arrList.get(i).get("CLASSNO").toString());
                             arrayListClassNo.put("ATTDTIME",arrList.get(i).get("ATTDTIME").toString());
@@ -269,7 +288,7 @@ public class checkActivity extends ActionBarActivity implements NavigationDrawer
 
         // 위치 확인이 안되는 경우에도 최근에 확인된 위치 정보 먼저 확인
         try {
-            Toast.makeText(getApplicationContext(), "위치 확인이 시작되었습니다. 로그를 확인하세요.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "출석이 완료되었습니다.", Toast.LENGTH_SHORT).show();
             Location lastLocation = manager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             if (lastLocation != null) {
                 latitude = lastLocation.getLatitude();
@@ -279,6 +298,69 @@ public class checkActivity extends ActionBarActivity implements NavigationDrawer
             ex.printStackTrace();
         }
         onStop();
+    }
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int getid = item.getItemId();
+
+        if (getid == R.id.nav_home) {
+            Intent intent1 = new Intent(this, MenuActivity.class);
+            bundleData = new Bundle();
+            bundleData.putString("ID",id);
+            bundleData.putString("POSITION",position);
+
+            intent1.putExtra("ID_DATA", bundleData);
+            startActivity(intent1);
+
+            Toast.makeText(this, "home", Toast.LENGTH_SHORT).show();
+        } else if (getid == R.id.nav_check) {
+            Intent intent2 = new Intent(this, checkActivity.class);
+            bundleData = new Bundle();
+            bundleData.putString("ID",id);
+            bundleData.putString("POSITION",position);
+            intent2.putExtra("ID_DATA", bundleData);
+            startActivity(intent2);
+            Toast.makeText(this, "check", Toast.LENGTH_SHORT).show();
+
+        } else if (getid == R.id.nav_checkList) {
+            Intent intent3 = new Intent(this, st_CheckListActivity.class);
+            bundleData = new Bundle();
+            bundleData.putString("ID",id);
+            bundleData.putString("POSITION",position);
+            intent3.putExtra("ID_DATA", bundleData);
+            startActivity(intent3);
+            Toast.makeText(this, "nav_checkList", Toast.LENGTH_SHORT).show();
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 
     /**
@@ -293,9 +375,9 @@ public class checkActivity extends ActionBarActivity implements NavigationDrawer
             latitude = location.getLatitude();
             longitude = location.getLongitude();
 
-            String msg = "두번째Latitude 22: " + latitude + "\nLongitude:22" + longitude;
+          /*  String msg = "두번째Latitude 22: " + latitude + "\nLongitude:22" + longitude;
             Log.i("GPSListener", msg);
-            Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();*/
 
         }
 
@@ -320,7 +402,7 @@ public class checkActivity extends ActionBarActivity implements NavigationDrawer
             List<HashMap> arrayList1 = new ArrayList<HashMap>();
             try {
 
-                HttpRequest request = post("http://192.168.1.13:8088/bitin/api/class/classlist");
+                HttpRequest request = post("http://192.168.0.5:8088/bitin/api/class/classlist");
 
                 // reiquest 설정
                 request.connectTimeout(2000).readTimeout(2000);
@@ -387,7 +469,7 @@ public class checkActivity extends ActionBarActivity implements NavigationDrawer
 
             try {
 
-                HttpRequest request = post("http://192.168.1.13:8088/bitin/api/user/check");
+                HttpRequest request = post("http://192.168.0.5:8088/bitin/api/user/check");
 
                 // reiquest 설정
                 request.connectTimeout(2000).readTimeout(2000);
@@ -430,6 +512,8 @@ public class checkActivity extends ActionBarActivity implements NavigationDrawer
                 //5. 사용하기
                 Log.d("---> ResponseResult-->", result.getResult());  // "success"? or "fail"?
 
+                status  = result.getResult();
+                checkSuccess(status);
 
                 return result.getResult();
 
@@ -534,134 +618,7 @@ public class checkActivity extends ActionBarActivity implements NavigationDrawer
         }.start();
 
     }
-    @Override
-    public void  onNavigationDrawerItemSelected(int position1) {
-        // update the main content by replacing fragments
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        switch (position1) {
 
-            case 1:
-                Log.d("position-->case0",Integer.toString(position1));
-                //  Log.d("position",position);
-                Intent intent1 = new Intent(this, MenuActivity.class);
-                Bundle bundleData = new Bundle();
-                bundleData.putString("ID", id);
-                bundleData.putString("POSITION",position);
-                intent1.putExtra("ID_DATA", bundleData);
-                startActivity(intent1);
-                finish();
-                break;
-            case 2:
-                //Settings
-                Log.d("position-->case1",Integer.toString(position1));
-                Intent intent2 = new Intent(this, checkActivity.class);
-                bundleData = new Bundle();
-                bundleData.putString("ID",id);
-                bundleData.putString("POSITION",position);
-                intent2.putExtra("ID_DATA", bundleData);
-                startActivity(intent2);
-                break;
-            case 3:
-                Log.d("position-->case2",Integer.toString(position1));
-                Intent intent3 = new Intent(this,st_CheckListActivity.class);
-                bundleData = new Bundle();
-                bundleData.putString("ID",id);
-                bundleData.putString("POSITION",position);
-                intent3.putExtra("ID_DATA", bundleData);
-                startActivity(intent3);
-                break;
-            default:
-        }
-
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position1 + 1))
-                .commit();
-
-        return ;
-    }
-
-    public void onSectionAttached(int position) {
-        switch (position) {
-            case 1:
-                mTitle = getString(R.string.title_section0);
-
-                break;
-            case 2:
-                mTitle = getString(R.string.title_section1);
-
-                break;
-            case 3:
-                mTitle = getString(R.string.title_section2);
-
-                break;
-            case 4:
-                mTitle = getString(R.string.title_section3);
-
-                break;
-        }
-    }
-
-    public void restoreActionBar() {
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-        actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setTitle(mTitle);
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        if (!mNavigationDrawerFragment.isDrawerOpen()) {
-            // Only show items in the action bar relevant to this screen
-            // if the drawer is not showing. Otherwise, let the drawer
-            // decide what to show in the action bar.
-            getMenuInflater().inflate(R.menu.main2, menu);
-            restoreActionBar();
-            return true;
-        }
-        return super.onCreateOptionsMenu(menu);
-    }
-
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main2, container, false);
-            return rootView;
-        }
-
-        @Override
-        public void onAttach(Activity activity) {
-            super.onAttach(activity);
-            ((checkActivity) activity).onSectionAttached(
-                    getArguments().getInt(ARG_SECTION_NUMBER));
-        }
-    }
 
 }
 

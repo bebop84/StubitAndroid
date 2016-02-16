@@ -1,5 +1,185 @@
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:choiceMode="singleChoice"
-    android:divider="@android:color/transparent" android:dividerHeight="0dp"
-    android:background="#cccc" tools:context="com.example.bit_user.NavigationDrawerFragment" />
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:choiceMode="singleChoice"
+    android:divider="@android:color/transparent"
+    android:dividerHeight="0dp"
+    tools:context="com.example.bit_user.myapplication.NavigationDrawerFragment"
+    android:background="#f5ffffff">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:id="@+id/imageView9"
+        android:background="@drawable/drawbg2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/imageView9"
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout8"
+        android:layout_marginTop="20dp">
+
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/home_btn"
+            android:background="@drawable/drawhome_icon"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:clickable="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Home"
+            android:id="@+id/home"
+            android:textColor="#8C817D"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="25dp"
+            android:textColorHighlight="#9055BEDB"
+            android:textSize="18dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/linearLayout8"
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout9">
+
+        <ImageButton
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/dcheck_btn"
+            android:background="@drawable/drawch_icon"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="출석 체크"
+            android:id="@+id/check"
+            android:textColor="#8C817D"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="15dp"
+            android:textColorHighlight="#9055BEDB"
+            android:textSize="18dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/linearLayout9"
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout10">
+
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/checklist_btn"
+            android:background="@drawable/drawlist_icon"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="출석 체크 현황"
+            android:id="@+id/checklist"
+            android:textColor="#8C817D"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="15dp"
+            android:textColorHighlight="#9055BEDB"
+            android:textSize="18dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/linearLayout10"
+        android:layout_alignParentStart="true">
+
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/imageButton3"
+            android:background="@drawable/drawuser_icon"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="마이페이지"
+            android:id="@+id/user"
+            android:textColor="#8C817D"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="15dp"
+            android:textColorHighlight="#9055BEDB"
+            android:textSize="18dp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Type - B"
+        android:id="@+id/textView12"
+        android:layout_above="@+id/linearLayout8"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp" />
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/imageView10"
+        android:background="@drawable/login_icon"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_above="@+id/textView12"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/userid"
+        android:textStyle="bold"
+        android:textSize="25dp"
+        android:hint="아이디입니다."
+        android:layout_alignTop="@+id/imageView10"
+        android:layout_toEndOf="@+id/imageView10"
+        android:layout_marginTop="10dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:id="@+id/logout"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/textView12" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_below="@+id/textView12"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"
+        android:background="#9027241F"></LinearLayout>
+</RelativeLayout>

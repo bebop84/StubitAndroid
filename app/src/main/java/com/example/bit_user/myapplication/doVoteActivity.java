@@ -124,7 +124,7 @@ public class doVoteActivity extends Activity {
     private class VoteTask extends AsyncTask<String, Void, String> {
         protected String doInBackground(String... params) {
             try {
-                HttpRequest request = post("http://192.168.1.32:8088/bitin/api/vote/votelistbyvoteno");
+                HttpRequest request = post("http://192.168.0.5:8088/bitin/api/vote/votelistbyvoteno");
                 request.connectTimeout(2000).readTimeout(2000);
 
                 request.acceptCharset("UTF-8");
@@ -192,7 +192,7 @@ public class doVoteActivity extends Activity {
 
         protected String doInBackground(String... params) {
             try {
-                HttpRequest request = post("http://192.168.1.32:8088/bitin/api/vote/voting");
+                HttpRequest request = post("http://192.168.0.5:8088/bitin/api/vote/voting");
                 request.connectTimeout(2000).readTimeout(2000);
 
                 request.acceptCharset("UTF-8");

@@ -44,7 +44,7 @@ public class BoardActivity extends Activity {
         id = preferences.getString("id","");
         position =preferences.getString("postion","");
         password = preferences.getString("password","");
-;
+
 
         WebView infoWebView = (WebView)findViewById(R.id.webview);
 
@@ -53,8 +53,8 @@ public class BoardActivity extends Activity {
         infoWebView.getSettings().setDomStorageEnabled(true);
         infoWebView.getSettings().setJavaScriptEnabled(true);			// 자바 스크립스 사용
 
-        infoWebView.loadUrl("http://192.168.1.120:8088/bitin/index?id="+id);					// Load URL
-
+        infoWebView.loadUrl("http://192.168.0.5:8088/bitin/webapp/index?id="+id);					// Load URL
+        //infoWebView.loadUrl("http://192.168.1.20:8088/bitin/webapp/index?id=iron");					// Load URL
             }
 
     public class InfoWebViewClient extends WebViewClient {

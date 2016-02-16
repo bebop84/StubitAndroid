@@ -2,41 +2,55 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="1">
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="200dp"
+        android:layout_width="225dp"
+        android:orientation="vertical"
         android:layout_height="match_parent"
         >
+        <LinearLayout android:id="@+id/l111"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
 
-    <TextView android:id="@+id/lesson_name_teacher"
-        android:text="lesson"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"/>
+        <TextView android:id="@+id/lesson_name_teacher"
+            android:text="수업 이름"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
 
-    <TextView android:id="@+id/vote_title_teacher"
-        android:text="title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"/>
+        <TextView android:id="@+id/vote_time_teacher"
+            android:text="날짜"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        </LinearLayout>
 
-    <TextView android:id="@+id/vote_time_teacher"
-        android:text="time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"/>
+        <LinearLayout android:id="@+id/l12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView android:id="@+id/vote_title_teacher"
+            android:text="투표 제목"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"/>
+            </LinearLayout>
     </LinearLayout>
 
+
     <Button android:id="@+id/click_vote_teacher"
-        android:layout_width="80dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:text="투표현황"  />
+        android:layout_gravity="right"
+        android:text="투표현황"/>
 
     <Button android:id="@+id/remove_vote_teacher"
-        android:layout_width="80dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:text="삭제"  />
+        android:layout_gravity="right"
+        android:text="투표삭제"  />
+
 
 </LinearLayout>

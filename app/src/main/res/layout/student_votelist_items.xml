@@ -2,28 +2,60 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="1">
 
-    <TextView android:id="@+id/votelist_lesson_name"
-        android:text="수업 이름"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"/>
+    <LinearLayout
+        android:layout_width="225dp"
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout android:id="@+id/l111"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
 
-    <TextView android:id="@+id/votelist_vote_title"
-        android:text="투표 이름"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"/>
+            <TextView android:id="@+id/votelist_lesson_name"
+                android:text="수업 이름"
+                android:layout_width="200dp"
+                android:textColor="#b2b2b2"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
 
-    <TextView android:id="@+id/votelist_vote_time"
-        android:text="생성 날짜"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"/>
+            <TextView android:id="@+id/votelist_vote_time"
+                android:text="날짜"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#b2b2b2" />
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/l12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView android:id="@+id/votelist_vote_title"
+                android:text="투표 이름"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:textColor="#ffffff"
+                 />
+        </LinearLayout>
+    </LinearLayout>
+
 
     <Button android:id="@+id/btnVote"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:text="투표하기"  />
+        android:layout_width="50dp"
+        android:layout_gravity="right"
+        android:text="투표하기"
+        android:layout_height="wrap_content" />
+
+    <Button android:id="@+id/btnVoteResult"
+        android:layout_width="50dp"
+        android:layout_gravity="right"
+        android:text="결과보기"
+        android:layout_height="wrap_content" />
+
+
 </LinearLayout>

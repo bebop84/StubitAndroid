@@ -51,7 +51,7 @@ public class MenuActivity extends Activity implements  View.OnClickListener {
         position =preferences.getString("postion","");
 
 
-        //Toast.makeText(this, "ID is "+id ,Toast.LENGTH_LONG).show();
+
 
         menu01 =(ImageButton)findViewById(R.id.menu01);
         menu02 = (ImageButton)findViewById(R.id.menu02);
@@ -93,7 +93,7 @@ public class MenuActivity extends Activity implements  View.OnClickListener {
                 break;
             case R.id.menu02: //출석체크
                 if(position.equals("teacher")) {
-                    Intent intent21 = new Intent(this,checkUpActivity.class);
+                    Intent intent21 = new Intent(this,VoteListTeacher.class);
                     bundleData = new Bundle();
                     bundleData.putString("ID",id);
                     bundleData.putString("position",position);
@@ -101,7 +101,7 @@ public class MenuActivity extends Activity implements  View.OnClickListener {
                     startActivity(intent21);
                 }
                 else if (position.equals("student")) {
-                    Intent intent22 = new Intent(this,checkActivity.class);
+                    Intent intent22 = new Intent(this,VoteListStudent.class);
                     bundleData = new Bundle();
                     bundleData.putString("ID",id);
                     bundleData.putString("position",position);
@@ -112,16 +112,18 @@ public class MenuActivity extends Activity implements  View.OnClickListener {
                 break;
             case R.id.menu03: //투표하기
                 if(position.equals("teacher")) {
-                    Intent intent31 = new Intent(this,VoteListTeacher.class);
+                    Intent intent31 = new Intent(this,checkUpActivity.class);
                     bundleData = new Bundle();
                     bundleData.putString("ID",id);
+                    bundleData.putString("position",position);
                     intent31.putExtra("ID_DATA", bundleData);
                     startActivity(intent31);
                 }
                 else if (position.equals("student")) {
-                    Intent intent32 = new Intent(this,VoteListStudent.class);
+                    Intent intent32 = new Intent(this,checkActivity.class);
                     bundleData = new Bundle();
                     bundleData.putString("ID",id);
+                    bundleData.putString("position",position);
                     intent32.putExtra("ID_DATA", bundleData);
                     startActivity(intent32);
                 }
@@ -131,6 +133,7 @@ public class MenuActivity extends Activity implements  View.OnClickListener {
                     Intent intent41 = new Intent(this,MessageTeacher.class);
                     bundleData = new Bundle();
                     bundleData.putString("ID",id);
+                    bundleData.putString("position",position);
                     intent41.putExtra("ID_DATA", bundleData);
                     startActivity(intent41);
                 }
@@ -138,6 +141,7 @@ public class MenuActivity extends Activity implements  View.OnClickListener {
                     Intent intent41 = new Intent(this,QnAActivity.class);
                     bundleData = new Bundle();
                     bundleData.putString("ID",id);
+                    bundleData.putString("position",position);
                     intent41.putExtra("ID_DATA", bundleData);
                     startActivity(intent41);
                 }
@@ -147,6 +151,7 @@ public class MenuActivity extends Activity implements  View.OnClickListener {
                     Intent intent51 = new Intent(this,NoticeTeacherActivity.class);
                     bundleData = new Bundle();
                     bundleData.putString("ID",id);
+                    bundleData.putString("position",position);
                     intent51.putExtra("ID_DATA", bundleData);
                     startActivity(intent51);
                 }
@@ -154,15 +159,17 @@ public class MenuActivity extends Activity implements  View.OnClickListener {
                     Intent intent52 = new Intent(this,NoticeStudentActivity.class);
                     bundleData = new Bundle();
                     bundleData.putString("ID",id);
+                    bundleData.putString("position",position);
                     intent52.putExtra("ID_DATA", bundleData);
                     startActivity(intent52);
                 }
 
                 break;
             case R.id.menu06: //마이페이지
-                Intent intent61 = new Intent(this,MypageActivity.class);
+                Intent intent61 = new Intent(this,ProfileActivity.class);
                 bundleData = new Bundle();
                 bundleData.putString("ID",id);
+                bundleData.putString("position",position);
                 intent61.putExtra("ID_DATA", bundleData);
                 startActivity(intent61);
 

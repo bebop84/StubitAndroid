@@ -139,7 +139,7 @@ public class NewAppWidget extends AppWidgetProvider {
             try {
 
 
-                HttpRequest request = post("http://192.168.1.32:8088/bitin//api/notice/list");
+                HttpRequest request = post("http://192.168.0.5:8088/bitin//api/notice/list");
 
 
                 // reiquest 설정
@@ -219,7 +219,7 @@ public class NewAppWidget extends AppWidgetProvider {
             try {
 
 
-                HttpRequest request = post("http://192.168.1.13:8088/bitin/api/class/classlist");
+                HttpRequest request = post("http://192.168.0.5:8088/bitin/api/class/classlist");
 
 
                 // reiquest 설정
@@ -385,7 +385,7 @@ public class NewAppWidget extends AppWidgetProvider {
             Long minute = (count_timer - day * 60 * 60 * 24 - hour * 3600) / 60;
             Long second = count_timer % 60;
 
-           String pre_count = hour+":"+minute+":"+second;
+           String pre_count = minute+":"+second;
 
             //여기서는 버튼의 글자를 갱신한다.
             RemoteViews views = new RemoteViews(this.getPackageName(), R.layout.new_app_widget);
